@@ -26,7 +26,7 @@
     @endforeach
     </div>
 <script>
-    $(".bth,.addItem").click(function() {
+$(".bth,.addItem").click(function() {
     var total = parseInt($('#shoppingcart').text());
     var i=$(this).val();
     $('#shoppingcart').text(total);    
@@ -42,6 +42,17 @@
           alert("problem communicating with the server");
       }
     });
+});
+
+$("#emptycart").click(function() { $.ajax({
+    type: "get", url: "{{ url('products/emptycart')   }}",
+    success: function() {
+        $('#shoppingcart').text(0);
+    },
+    error: function() {
+        alert("problem communicating with the server");
+    }
+  });
 });
 </script>
 @endsection('content')
